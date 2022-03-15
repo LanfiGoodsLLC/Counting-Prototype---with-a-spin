@@ -25,5 +25,6 @@ public class ReturnToMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         gameManager.titleScreen.SetActive(true);
+        gameManager.leaderBoard.SetActive(false);
     }
 }

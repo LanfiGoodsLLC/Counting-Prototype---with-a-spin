@@ -19,23 +19,39 @@ public class GameManager : MonoBehaviour
     public AudioClip timeEnd;
     public AudioSource gameAudio;
    
-    public int score;
+    //adding static to test
+    public static int score;
 
-    public static int highScore;
+   // public static int highScore;
 
     public bool isGameActive;
 
     //For instance for keeping persistant data
     public static GameManager Instance;
 
-    //For leaderboard
-    public string recordedScore;
-
+    //For Inputting highscore
     public GameObject highScoreRecorder;
-    public TMP_InputField yourName;
-    public TextMeshProUGUI yourScore;
+
+    public GameObject leaderBoard;
     public Button Confirm;
-    public Button notNow;
+
+    public TMP_InputField yourUserNameInput;
+
+    public TextMeshProUGUI userAndScoreObject;
+
+    private string UserandScores;
+    private string inputedUserName;
+    
+   
+    //taken for scoringg?
+
+    private static int scoreForBoard;
+    private string basicScore;
+    public TextMeshProUGUI basicScoreObject;
+    private int highScore;
+    private int newhighScore;
+    private string highscorestring;
+    public TextMeshProUGUI highScoreObject;
 
 
     public void Start()
@@ -53,6 +69,21 @@ public class GameManager : MonoBehaviour
 
         scoreText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
+
+        //for scoring?
+        highScore = PlayerPrefs.GetInt("highscore", 0);
+        PlayerPrefs.GetInt("highscore", newhighScore);
+        highscorestring = "High Score: " + newhighScore.ToString();
+        highScoreObject.text = (highscorestring);
+
+        //for user name
+
+        inputedUserName = yourUserNameInput.text;
+        UserandScores = "User: " + inputedUserName + " Score: " + highScore.ToString();
+        userAndScoreObject.text = (UserandScores);
+
+        
+        Confirm.onClick.AddListener(ConfirmisClicked);
 
 
     }
@@ -92,6 +123,23 @@ public class GameManager : MonoBehaviour
                 GameOver();
             }
         }
+        scoreForBoard = score;
+        basicScore = "Score: " + scoreForBoard.ToString();
+        basicScoreObject.text = (basicScore);
+        
+        if (score > highScore)
+        {
+            newhighScore = scoreForBoard;
+            PlayerPrefs.SetInt("highscore", newhighScore);
+            highscorestring = "High Score: " + newhighScore.ToString();
+            highScoreObject.text = (highscorestring);            
+        }
+        else
+        {
+            PlayerPrefs.SetInt("highscore", highScore);
+            highscorestring = "High Score: " + highScore.ToString();
+            highScoreObject.text = (highscorestring);
+        }
     }
     public void GameOver()
     {
@@ -102,14 +150,21 @@ public class GameManager : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
             highScoreRecorder.gameObject.SetActive(true);
-
-            yourScore.text = "Score: " + score;
         }
-
-
-    
-        
     }
+
+    public void ConfirmisClicked()
+    {
+
+
+        //keep track of new users and scores
+        inputedUserName = yourUserNameInput.text;
+        UserandScores = "User: " + inputedUserName + " Score: " + highScore.ToString();
+        userAndScoreObject.text = (UserandScores);
+
+        Debug.Log("Confirm was clicked and data recorded");
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
@@ -130,16 +185,18 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score : " + score;
     }
 
-    // Trying to keep a higgh score below 
+    // Trying to keep a high score below 
     [System.Serializable]
     class SaveData
     {
         public int highScore;
+        public TextMeshProUGUI userAndScoreObject;
     }
     public void SaveScore()
     {
         SaveData data = new SaveData();
         data.highScore = highScore;
+        data.userAndScoreObject = userAndScoreObject;
 
         string json = JsonUtility.ToJson(data);
 
@@ -154,7 +211,7 @@ public class GameManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             highScore = data.highScore;
+            userAndScoreObject = data.userAndScoreObject;
         }
     }
-
 }

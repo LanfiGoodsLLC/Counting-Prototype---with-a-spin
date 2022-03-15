@@ -26,7 +26,5 @@ public class GoToHowTo : MonoBehaviour
         gameManager.titleScreen.SetActive(false);
         gameManager.scoreText.gameObject.SetActive(false);
         gameManager.timerText.gameObject.SetActive(false);
-    }
-
-  
+    }  
 }

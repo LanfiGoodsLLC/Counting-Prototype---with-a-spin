@@ -15,7 +15,7 @@ public class PlayButton : MonoBehaviour
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        playButton.onClick.AddListener(SetDifficulty);
+        playButton.onClick.AddListener(PlayButtonPressed);
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class PlayButton : MonoBehaviour
 
     }
 
-    void SetDifficulty()
+    void PlayButtonPressed()
     {
         gameManager.StartGame();
         Debug.Log(gameObject.name + " was clicked");
