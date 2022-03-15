@@ -22,18 +22,38 @@ public class GameManager : MonoBehaviour
 
     public bool isGameActive;
 
-   
+    public static GameManager Instance;
 
+
+    public void Start()
+    {
+        //Making an instance
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        //instance above
+
+     
+    }
     // Start is called before the first frame update
     public void StartGame()
     {
+
         timeLeft = 60;
         isGameActive = true;
         score = 0;
-       
 
+        if (isGameActive)
+        {
+            titleScreen.SetActive(false);
+            Debug.Log("titlescreen is off");
+        }
 
-        titleScreen.SetActive(false);
 
         UpdateScore(0);
     }
@@ -57,14 +77,24 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameAudio.PlayOneShot(ballFalls);
-        
-        gameOverText.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(true);
         isGameActive = false;
+        if (!isGameActive)
+        {
+            gameOverText.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+        }
+    
+        
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
+
+        gameOverText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+
+        titleScreen.SetActive(true);
+
     }
     public void UpdateScore(int scoreToAdd)
     {
