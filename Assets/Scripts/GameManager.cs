@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     public AudioSource gameAudio;
    
     public int score;
+
+    public static int highScore;
 
     public bool isGameActive;
 
@@ -101,6 +104,31 @@ public class GameManager : MonoBehaviour
         gameAudio.PlayOneShot(ballScore);
         score += scoreToAdd;
         scoreText.text = "Score : " + score;
+    }
+    [System.Serializable]
+    class SaveData
+    {
+        public int highScore;
+    }
+    public void SaveColor()
+    {
+        SaveData data = new SaveData();
+        data.highScore = highScore;
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+    public void LoadColor()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            highScore = data.highScore;
+        }
     }
 
 }
