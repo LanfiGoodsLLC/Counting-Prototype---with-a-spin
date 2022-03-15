@@ -24,8 +24,7 @@ public class Controller : MonoBehaviour
     public GameObject playerHands;
 
     private GameManager gameManager;
-    public int scoreValue;
-    public GameObject scoreSound;
+
 
     //
     float m_VerticalSpeed = 0.0f;
@@ -68,17 +67,6 @@ public class Controller : MonoBehaviour
         m_VerticalAngle = 0.0f;
         m_HorizontalAngle = transform.localEulerAngles.y;
     }
-    //update score shooting ball into goal
- //   private void OnTriggerEnter(Collider other)
-   // {    
-     //   if (gameManager.isGameActive && other.gameObject.CompareTag("Goal"))
-    //    {
-   //         Destroy(gameObject);
-  //          gameManager.UpdateScore(scoreValue);
-  //          Debug.Log("update score");
-   //     }
-
- //   }
 
     void Update()
     {

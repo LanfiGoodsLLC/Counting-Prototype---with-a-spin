@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public bool isGameActive;
 
-    public static GameManager Instance;
+   
 
     // Start is called before the first frame update
     public void StartGame()
@@ -38,19 +38,7 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
     }
 
-    //Make Gamemanager active between both scenes
-    private void Awake()
-    {
-
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+   
 
         // Update is called once per frame
         void Update()
