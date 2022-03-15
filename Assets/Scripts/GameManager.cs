@@ -25,7 +25,17 @@ public class GameManager : MonoBehaviour
 
     public bool isGameActive;
 
+    //For instance for keeping persistant data
     public static GameManager Instance;
+
+    //For leaderboard
+    public string recordedScore;
+
+    public GameObject highScoreRecorder;
+    public TMP_InputField yourName;
+    public TextMeshProUGUI yourScore;
+    public Button Confirm;
+    public Button notNow;
 
 
     public void Start()
@@ -41,22 +51,28 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         //instance above
 
-     
+        scoreText.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
+
+
     }
     // Start is called before the first frame update
     public void StartGame()
     {
-
-        timeLeft = 60;
         isGameActive = true;
-        score = 0;
 
+        
+         
         if (isGameActive)
         {
             titleScreen.SetActive(false);
+            scoreText.gameObject.SetActive(true);
+            timerText.gameObject.SetActive(true);
             Debug.Log("titlescreen is off");
         }
 
+        score = 0;
+        timeLeft = 60;
 
         UpdateScore(0);
     }
@@ -85,7 +101,12 @@ public class GameManager : MonoBehaviour
         {
             gameOverText.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
+            highScoreRecorder.gameObject.SetActive(true);
+
+            yourScore.text = "Score: " + score;
         }
+
+
     
         
     }
@@ -95,6 +116,9 @@ public class GameManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
+        highScoreRecorder.gameObject.SetActive(false);
 
         titleScreen.SetActive(true);
 
@@ -105,12 +129,14 @@ public class GameManager : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "Score : " + score;
     }
+
+    // Trying to keep a higgh score below 
     [System.Serializable]
     class SaveData
     {
         public int highScore;
     }
-    public void SaveColor()
+    public void SaveScore()
     {
         SaveData data = new SaveData();
         data.highScore = highScore;
@@ -119,7 +145,7 @@ public class GameManager : MonoBehaviour
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
-    public void LoadColor()
+    public void LoadScore()
     {
         string path = Application.persistentDataPath + "/savefile.json";
         if (File.Exists(path))

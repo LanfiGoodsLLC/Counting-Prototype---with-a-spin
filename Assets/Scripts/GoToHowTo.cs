@@ -24,6 +24,8 @@ public class GoToHowTo : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         gameManager.titleScreen.SetActive(false);
+        gameManager.scoreText.gameObject.SetActive(false);
+        gameManager.timerText.gameObject.SetActive(false);
     }
 
   

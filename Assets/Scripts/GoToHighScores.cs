@@ -25,6 +25,8 @@ public class GoToHighScores : MonoBehaviour
     {
         SceneManager.LoadScene(2);
         gameManager.titleScreen.SetActive(false);
+        gameManager.scoreText.gameObject.SetActive(false);
+        gameManager.timerText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
