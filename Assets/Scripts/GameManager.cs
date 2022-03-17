@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     public AudioSource gameAudio;
    
     //adding static to test
-    public static int score;
+    public int score;
 
    // public static int highScore;
 
@@ -38,19 +39,19 @@ public class GameManager : MonoBehaviour
     public TMP_InputField yourUserNameInput;
 
     public TextMeshProUGUI userAndScoreObject;
-
-    private string UserandScores;
-    private string inputedUserName;
+    
+    public string UserandScores;
+    public string inputedUserName;
     
    
     //taken for scoringg?
 
-    private static int scoreForBoard;
+    public static int scoreForBoard;
     private string basicScore;
     public TextMeshProUGUI basicScoreObject;
-    private int highScore;
-    private int newhighScore;
-    private string highscorestring;
+    public int highScore;
+    public int newhighScore;
+    public string highscorestring;
     public TextMeshProUGUI highScoreObject;
 
 
@@ -71,22 +72,24 @@ public class GameManager : MonoBehaviour
         timerText.gameObject.SetActive(false);
 
         //for scoring?
-        highScore = PlayerPrefs.GetInt("highscore", 0);
-        PlayerPrefs.GetInt("highscore", newhighScore);
+        highScore = PlayerPrefs.GetInt("highScore");
+        PlayerPrefs.GetInt("highScore", newhighScore);
         highscorestring = "High Score: " + newhighScore.ToString();
         highScoreObject.text = (highscorestring);
 
         //for user name
 
-        inputedUserName = yourUserNameInput.text;
-        UserandScores = "User: " + inputedUserName + " Score: " + highScore.ToString();
+        LoadScore();
+        UserandScores = "User: " + inputedUserName + " High Score: " + highScore.ToString();
         userAndScoreObject.text = (UserandScores);
 
         
         Confirm.onClick.AddListener(ConfirmisClicked);
 
-
+        
     }
+
+
     // Start is called before the first frame update
     public void StartGame()
     {
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour
 
         score = 0;
         timeLeft = 60;
-
+        
         UpdateScore(0);
     }
 
@@ -130,13 +133,14 @@ public class GameManager : MonoBehaviour
         if (score > highScore)
         {
             newhighScore = scoreForBoard;
-            PlayerPrefs.SetInt("highscore", newhighScore);
+            PlayerPrefs.SetInt("highScore", newhighScore);
             highscorestring = "High Score: " + newhighScore.ToString();
-            highScoreObject.text = (highscorestring);            
+            highScoreObject.text = (highscorestring);
+            
         }
         else
         {
-            PlayerPrefs.SetInt("highscore", highScore);
+            PlayerPrefs.SetInt("highScore", highScore);
             highscorestring = "High Score: " + highScore.ToString();
             highScoreObject.text = (highscorestring);
         }
@@ -158,11 +162,15 @@ public class GameManager : MonoBehaviour
 
 
         //keep track of new users and scores
-        inputedUserName = yourUserNameInput.text;
-        UserandScores = "User: " + inputedUserName + " Score: " + highScore.ToString();
-        userAndScoreObject.text = (UserandScores);
-
+        if (score > highScore)
+        {
+            highScore = scoreForBoard;
+            inputedUserName = yourUserNameInput.text;
+            UserandScores = "User: " + inputedUserName + " High Score: " + highScore.ToString();
+            userAndScoreObject.text = (UserandScores);
+            SaveScore();
         Debug.Log("Confirm was clicked and data recorded");
+        }
     }
 
     public void RestartGame()
@@ -189,18 +197,22 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
-        public int highScore;
-        public TextMeshProUGUI userAndScoreObject;
+        public int highScoreSave;
+        public string userAndScoreData;
+        public string inputedUserNameSave;
     }
     public void SaveScore()
     {
-        SaveData data = new SaveData();
-        data.highScore = highScore;
-        data.userAndScoreObject = userAndScoreObject;
+       
+            SaveData data = new SaveData();
+            data.highScoreSave = highScore;
+        data.userAndScoreData = userAndScoreObject.text;
+        data.inputedUserNameSave = inputedUserName;
 
-        string json = JsonUtility.ToJson(data);
+            string json = JsonUtility.ToJson(data);
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+            File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        
     }
     public void LoadScore()
     {
@@ -210,8 +222,10 @@ public class GameManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            highScore = data.highScore;
-            userAndScoreObject = data.userAndScoreObject;
+            highScore = data.highScoreSave;
+            userAndScoreObject.text = data.userAndScoreData;
+            inputedUserName = data.inputedUserNameSave;
         }
     }
+
 }
