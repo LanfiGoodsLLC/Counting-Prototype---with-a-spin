@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 70
+  goalPoint: 20
 --- !u!4 &173336957
 Transform:
   m_ObjectHideFlags: 0
@@ -2831,7 +2831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 30
+  goalPoint: 200
 --- !u!65 &433469813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2989,7 +2989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 30
+  goalPoint: 50
 --- !u!65 &464056864
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4366,7 +4366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 30
+  goalPoint: 200
 --- !u!65 &676395330
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7130,7 +7130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 50
+  goalPoint: 500
 --- !u!65 &1176620273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7414,7 +7414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 30
+  goalPoint: 50
 --- !u!65 &1222156480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7589,9 +7589,12 @@ MonoBehaviour:
   Confirm: {fileID: 121889555}
   yourUserNameInput: {fileID: 2089189788}
   userAndScoreObject: {fileID: 124974694}
+  UserandScores: 
   inputedUserName: 
-  retainedHighScore: {fileID: 0}
   basicScoreObject: {fileID: 880284716}
+  highScore: 0
+  newhighScore: 0
+  highscorestring: 
   highScoreObject: {fileID: 1047194694}
 --- !u!4 &1293900086
 Transform:
@@ -9378,7 +9381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 100
+  goalPoint: 500
 --- !u!65 &1659798225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9657,7 +9660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 50
+  goalPoint: 10
 --- !u!4 &1712489089
 Transform:
   m_ObjectHideFlags: 0
@@ -9720,7 +9723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e094ca3cb595c4893f16537fc75ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPoint: 15
+  goalPoint: 20
 --- !u!4 &1718481207
 Transform:
   m_ObjectHideFlags: 0
