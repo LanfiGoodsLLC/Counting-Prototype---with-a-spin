@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ballLocation : MonoBehaviour
 {
     private GameManager gameManager;
-    public AudioClip lose;
+   
     
 
     // Start is called before the first frame update
@@ -14,19 +15,29 @@ public class ballLocation : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(gameObject.CompareTag("Ball") && collision.gameObject.CompareTag("Ground"))
+        if (gameObject.CompareTag("Ball") && collision.gameObject.CompareTag("BoxWall"))
         {
             Destroy(gameObject);
-            gameManager.GameOver();
+            Debug.Log("Ball hit wall");
+        }
+        if(gameObject.CompareTag("Ball") && collision.gameObject.CompareTag("Ground"))
+        {
+            gameManager.ballHitGround += 1;
+            Destroy(gameObject);
+            gameManager.BallsPop();
+            
             Debug.Log("Missed shot");
             
         }    
+        if (gameManager.ballHitGround == 3)
+        {
+            gameManager.GameOver();
+            Debug.Log("Ball dropped 3 times");
+        }
+        
     }
 }

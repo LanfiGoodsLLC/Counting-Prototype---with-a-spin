@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
 
     //For instance for keeping persistant data
+    //ENCAPSULATION
     public static GameManager Instance { get; private set; }
 
     //For Inputting highscore
@@ -43,8 +44,11 @@ public class GameManager : MonoBehaviour
     
     public string UserandScores;
     public string inputedUserName;
-    
-   
+
+    //tracking balls health
+    public int ballHitGround;
+
+
     //taken for scoringg?
 
     public static int scoreForBoard;
@@ -107,15 +111,16 @@ public class GameManager : MonoBehaviour
         }
 
         score = 0;
+        ballHitGround = 0;
         timeLeft = 60;
         
         UpdateScore(0);
     }
 
-   
 
-        // Update is called once per frame
-        void Update()
+
+    // Update is called once per frame
+    void Update()
     {
         if (isGameActive)
         {
@@ -148,7 +153,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        gameAudio.PlayOneShot(ballFalls);
         isGameActive = false;
         if (!isGameActive)
         {
@@ -156,6 +160,10 @@ public class GameManager : MonoBehaviour
             restartButton.gameObject.SetActive(true);
             highScoreRecorder.gameObject.SetActive(true);
         }
+    }
+    public void BallsPop()
+    {
+        gameAudio.PlayOneShot(ballFalls);
     }
 
     public void ConfirmisClicked()

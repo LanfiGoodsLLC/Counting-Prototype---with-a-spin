@@ -92,14 +92,8 @@ public class Controller : MonoBehaviour
         }
 
         //Fire ball from Player
-        
-        if (gameManager.isGameActive && Input.GetButtonDown("Fire1"))
-        {
-            Vector3 mousePos = new Vector3(0,playerHands.transform.position.x,0);
-           var instance = Instantiate(ball, playerHands.transform.position, player.transform.rotation);
-            Debug.Log("button being pressed");
-            instance.GetComponent<Rigidbody>().AddForce(CameraPosition.transform.forward * ballSpeed); 
-        }
+        ShootBall();
+    
 
         Speed = 0;
         Vector3 move = Vector3.zero;
@@ -170,5 +164,15 @@ public class Controller : MonoBehaviour
         m_IsPaused = display;
         Cursor.lockState = display ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = display;
+    }
+    void ShootBall()
+    {
+        if (gameManager.isGameActive && Input.GetButtonDown("Fire1"))
+        {
+            Vector3 mousePos = new Vector3(0, playerHands.transform.position.x, 0);
+            var instance = Instantiate(ball, playerHands.transform.position, player.transform.rotation);
+            Debug.Log("button being pressed");
+            instance.GetComponent<Rigidbody>().AddForce(CameraPosition.transform.forward * ballSpeed);
+        }
     }
 }

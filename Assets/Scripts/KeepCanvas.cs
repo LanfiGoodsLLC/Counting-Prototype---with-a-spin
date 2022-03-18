@@ -11,8 +11,6 @@ public class KeepCanvas : MonoBehaviour
     void Start()
     {
 
-       
-
         //Making an instance
         if (Instance != null)
         {
@@ -23,11 +21,5 @@ public class KeepCanvas : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         //instance above
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

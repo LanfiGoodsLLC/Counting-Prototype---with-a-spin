@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class LoadNewScene : MonoBehaviour
 {
+    //INHERITANCE - Most of these scripts take from the Game Manager Class in some form.
     private GameManager gameManager;
 
     private Button highScoreMenu;
