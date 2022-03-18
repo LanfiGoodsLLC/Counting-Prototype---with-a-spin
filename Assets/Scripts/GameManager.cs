@@ -9,6 +9,7 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
+   
     public GameObject titleScreen;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
 
     //For instance for keeping persistant data
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
 
     //For Inputting highscore
     public GameObject highScoreRecorder;
