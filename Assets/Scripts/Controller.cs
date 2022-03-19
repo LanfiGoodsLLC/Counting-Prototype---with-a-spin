@@ -18,13 +18,15 @@ public class Controller : MonoBehaviour
     public float JumpSpeed = 5.0f;
 
     //For ball stuff
-    public float ballSpeed = 5.0f;
+    public float ballSpeed = 1000f;
     public GameObject ball;
     public GameObject player;
     public GameObject playerHands;
 
     private GameManager gameManager;
+    // aim stuff
 
+    public GameObject aimCursor;
 
     //
     float m_VerticalSpeed = 0.0f;
@@ -66,6 +68,9 @@ public class Controller : MonoBehaviour
 
         m_VerticalAngle = 0.0f;
         m_HorizontalAngle = transform.localEulerAngles.y;
+
+        //aim cursor 
+        aimCursor.gameObject.SetActive(false);
     }
 
     void Update()
@@ -89,6 +94,15 @@ public class Controller : MonoBehaviour
         {
             m_GroundedTimer = 0.0f;
             m_Grounded = true;
+        }
+
+        if (gameManager.isGameActive == true)
+        {
+            aimCursor.gameObject.SetActive(true);
+        }    
+        if (gameManager.isGameActive == false)
+        {
+            aimCursor.gameObject.SetActive(false);
         }
 
         //Fire ball from Player
@@ -167,7 +181,7 @@ public class Controller : MonoBehaviour
     }
     void ShootBall()
     {
-        if (gameManager.isGameActive && Input.GetButtonDown("Fire1"))
+        if (gameManager.isGameActive && Input.GetButtonUp("Fire1"))
         {
             Vector3 mousePos = new Vector3(0, playerHands.transform.position.x, 0);
             var instance = Instantiate(ball, playerHands.transform.position, player.transform.rotation);

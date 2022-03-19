@@ -565,7 +565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -449, y: -289}
+  m_AnchoredPosition: {x: -829, y: -462}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &589819844
@@ -696,8 +696,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 241, y: 108}
-  m_SizeDelta: {x: 550.5, y: 390.0588}
+  m_AnchoredPosition: {x: 303, y: 136}
+  m_SizeDelta: {x: 903.892, y: 658.2959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445872095
 MonoBehaviour:
@@ -719,18 +719,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1. Shooting the ground is a Game Over!
-
-
-    2. The Left Mouse button
-    fires a ball.
-
-
-    3. Move the player with WASD.
-
-
-    4. Try to score as many
-    points as possible before the timer runs out!'
+  m_text: "1. If the ball hits the ground 3 times it's game over!\n\u2014 Look at
+    the hearts in the bottom right to track how many chances you have!\n\n2. The
+    Left Mouse button fires a ball.\n\n3. Move the player with WASD.\n\n4. Try to
+    score as many points as possible before the timer runs out!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -841,8 +833,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -300, y: -252}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -572.6185, y: -331.99973}
+  m_SizeDelta: {x: 128.9526, y: 118.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1641646062
 MonoBehaviour:

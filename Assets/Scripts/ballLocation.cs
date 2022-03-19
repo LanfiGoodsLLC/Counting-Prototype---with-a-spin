@@ -29,7 +29,7 @@ public class ballLocation : MonoBehaviour
             gameManager.ballHitGround += 1;
             Destroy(gameObject);
             gameManager.BallsPop();
-            
+            gameManager.HealthTracker();
             Debug.Log("Missed shot");
             
         }    

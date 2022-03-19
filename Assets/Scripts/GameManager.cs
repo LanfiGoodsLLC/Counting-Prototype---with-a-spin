@@ -47,7 +47,10 @@ public class GameManager : MonoBehaviour
 
     //tracking balls health
     public int ballHitGround;
-
+    public RawImage heartOne;
+    public RawImage heartTwo;
+    public RawImage heartThree;
+    public GameObject heartObject;
 
     //taken for scoringg?
 
@@ -107,6 +110,7 @@ public class GameManager : MonoBehaviour
             titleScreen.SetActive(false);
             scoreText.gameObject.SetActive(true);
             timerText.gameObject.SetActive(true);
+            heartObject.gameObject.SetActive(true);
             Debug.Log("titlescreen is off");
         }
 
@@ -159,12 +163,40 @@ public class GameManager : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
             highScoreRecorder.gameObject.SetActive(true);
+            heartObject.gameObject.SetActive(false);
+            scoreText.gameObject.SetActive(false);
+            timerText.gameObject.SetActive(false);
         }
     }
     public void BallsPop()
     {
         gameAudio.PlayOneShot(ballFalls);
     }
+
+    public void HealthTracker()
+    {
+        if (ballHitGround == 0)
+        {
+            heartOne.gameObject.SetActive(true);
+            heartTwo.gameObject.SetActive(true);
+            heartThree.gameObject.SetActive(true);
+        }
+        if (ballHitGround == 1)
+
+            { heartThree.gameObject.SetActive(false);
+        }
+        if (ballHitGround == 2)
+        {
+            heartTwo.gameObject.SetActive(false);
+        }
+        if (ballHitGround == 3)
+        {
+            heartOne.gameObject.SetActive(false);
+        }
+    }
+        
+
+    
 
     public void ConfirmisClicked()
     {

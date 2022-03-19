@@ -28,9 +28,6 @@ public class LoadNewScene : MonoBehaviour
     {
         SceneManager.LoadScene(2);
         gameManager.titleScreen.SetActive(false);
-        gameManager.scoreText.gameObject.SetActive(false);
-        gameManager.timerText.gameObject.SetActive(false);
-
         gameManager.leaderBoard.gameObject.SetActive(true);
     }
 
@@ -38,8 +35,6 @@ public class LoadNewScene : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         gameManager.titleScreen.SetActive(false);
-        gameManager.scoreText.gameObject.SetActive(false);
-        gameManager.timerText.gameObject.SetActive(false);
     }
 
   public void ReloadMenu()
@@ -52,6 +47,7 @@ public class LoadNewScene : MonoBehaviour
   public void PlayButtonPressed()
     {
         gameManager.StartGame();
+        gameManager.HealthTracker();
         Debug.Log(gameObject.name + " was clicked");
     }
 }
